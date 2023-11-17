@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { PokemonModule } from './pokemon.module';
+import { PokemonModule } from './pokemon/pokemon.module';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
