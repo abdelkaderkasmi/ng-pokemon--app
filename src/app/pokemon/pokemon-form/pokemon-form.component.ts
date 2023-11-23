@@ -35,26 +35,26 @@ export class PokemonFormComponent implements OnInit {
   }
 
   hasType(type: string):boolean{
-    return this.pokemon.types.includes(type);
+    return this.pokemon.Types.includes(type);
   }
 
   selectType($event: Event,type :string){
     const isChecked = ($event.target as HTMLInputElement).checked;
     if (isChecked){
-      this.pokemon.types.push(type);
+      this.pokemon.Types.push(type);
     } else {
-      const index = this.pokemon.types.indexOf(type);
-      this.pokemon.types.splice(index,1);
+      const index = this.pokemon.Types.indexOf(type);
+      this.pokemon.Types.splice(index,1);
     }
     
   }
 
   isTypesValid(type: string): boolean{
-     if (this.pokemon.types.length==1 && this.hasType(type)){
+     if (this.pokemon.Types.length==1 && this.hasType(type)){
       return false;
      }
 
-     if(this.pokemon.types.length > 2 && !this.hasType(type) ){
+     if(this.pokemon.Types.length > 2 && !this.hasType(type) ){
       return false;
      }
 
@@ -62,7 +62,7 @@ export class PokemonFormComponent implements OnInit {
   }
   onSubmit(){
     console.log('Submit form');
-    this.router.navigate(['/pokemon',this.pokemon.id]);
+    this.router.navigate(['/pokemon',this.pokemon.Id]);
   }
 
 }

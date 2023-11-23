@@ -1,33 +1,37 @@
 import { Injectable } from '@angular/core';
 import { Pokemon } from '../pokemon/pokemon';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { catchError, of, tap } from 'rxjs';
+import { CommonModule } from '@angular/common';
 import POKEMONS from '../pokemon/mock-pokemon-list';
 
 @Injectable({
   providedIn: 'root'
+
 })
 export class PokemonService {
+readonly APIUrl="https://mypokemonapi.azurewebsites.net/api/pokemonapp/"
   constructor(
-    // private http: HttpClient
+    private http: HttpClient
   ){}
   
-  getAll( ):Pokemon[]{
-    console.log(POKEMONS);
-    return POKEMONS;
-    // return this.http.get<Pokemon[]>('api/pokemons').pipe(
-    //   tap((response)=>this.log(response)),
-    //   catchError((error)=>this.handleError(error, []))
-    // );
+
+  getAll( ):Observable<Pokemon[]>{
+      return this.http.get<Pokemon[]>(this.APIUrl+'GetAll').pipe(
+        tap((response) => this.log(response)),
+        catchError((error) => this.handleError(error, []))
+      );
   }
 
-  // getById(id:number):Observable<Pokemon|undefined>{
-  //   return this.http.get<Pokemon>(`api/pokemon/${id}`).pipe(
-  //     tap((response)=>this.log(response)),
-  //     catchError((error)=>this.handleError(error, undefined))
-  //   );
-  // }
+
+  getById(id: number): Observable<Pokemon|undefined>{
+
+    return this.http.get<Pokemon>(this.APIUrl+'GetById/'+ id).pipe(
+      tap((response) => this.log(response)),
+      catchError((error) => this.handleError(error, []))
+    );
+  }
 
   private log(response: Pokemon[]|Pokemon|undefined){
     console.table(response);

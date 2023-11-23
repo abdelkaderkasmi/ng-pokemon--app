@@ -11,11 +11,11 @@ import { HttpClient } from '@angular/common/http';
     standalone: true,
     template: `
     <h2 class="center" >
-      Editer {{pokemon?.name}}
+      Editer {{pokemon?.Name}}
     </h2>
 
       <p *ngIf="pokemon" class="center">
-        <img [src]="pokemon.picture">
+        <img [src]="pokemon.Picture">
       </p>
       <app-pokemon-form *ngIf="pokemon" [pokemon]="pokemon"></app-pokemon-form>
   `,
@@ -32,9 +32,9 @@ export class EditPokemonComponent implements OnInit {
 
   ngOnInit() {
     const id: string | null= this.route.snapshot.paramMap.get('id');
+    console.log(id);
     if (id){
-      // this.pokemonSvc.getById(+id).subscribe(p=>this.pokemon = p);
-      this.pokemon= undefined;
+       this.pokemonSvc.getById(+id).subscribe(p=>this.pokemon = p);
 
     }else{
       this.pokemon= undefined;

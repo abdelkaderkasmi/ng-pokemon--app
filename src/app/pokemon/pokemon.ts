@@ -1,9 +1,9 @@
 export class Pokemon{
-    id:number;
-    hp:number;
-    cp:number;
-    name:string;
-    picture:string;
-    types:Array<string>;
-    created:Date;
+    Id:number;
+    Hp:number;
+    Cp:number;
+    Name:string;
+    Picture:string;
+    Types:Array<string>;
+    Created:Date;
 }
