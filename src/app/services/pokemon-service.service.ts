@@ -5,13 +5,14 @@ import { Observable } from 'rxjs/internal/Observable';
 import { catchError, of, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import POKEMONS from '../pokemon/mock-pokemon-list';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 
 })
 export class PokemonService {
-readonly APIUrl="https://mypokemonapi.azurewebsites.net/api/pokemonapp/"
+readonly APIUrl=environment.ApiUrl;
   constructor(
     private http: HttpClient
   ){}
@@ -27,7 +28,7 @@ readonly APIUrl="https://mypokemonapi.azurewebsites.net/api/pokemonapp/"
 
   getById(id: number): Observable<Pokemon|undefined>{
 
-    return this.http.get<Pokemon>(this.APIUrl+'GetById/'+ id).pipe(
+    return this.http.get<Pokemon>(this.APIUrl+'getbyid?id='+ id).pipe(
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error, []))
     );

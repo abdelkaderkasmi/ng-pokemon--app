@@ -23,7 +23,6 @@ export class ListPokemonComponent  implements OnInit {
   }
   ngOnInit(): void {
     this.pokemonSvc.getAll().subscribe(list => this.pokemonList = list as Pokemon[]); 
-    console.table(this.pokemonList);
   }
 
   goDetail(pokemon: Pokemon){
